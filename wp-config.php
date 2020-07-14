@@ -23,7 +23,7 @@ define('DB_USER', 'root');
 
 /** MySQL database password */
 define('DB_PASSWORD', '');
-
+//* hello*/
 /** MySQL hostname */
 define('DB_HOST', 'localhost');
 

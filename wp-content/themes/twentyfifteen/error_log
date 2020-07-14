@@ -1,0 +1,10 @@
+[04-Feb-2019 07:49:46 UTC] PHP Fatal error:  Call to undefined function get_header() in /home/iktutor/public_html/wp-content/themes/twentyfifteen/404.php on line 10
+[12-Feb-2019 23:10:19 UTC] PHP Fatal error:  Call to undefined function the_id() in /home/iktutor/public_html/wp-content/themes/twentyfifteen/content-link.php on line 13
+[15-Feb-2019 15:34:13 UTC] PHP Fatal error:  Call to undefined function get_header() in /home/iktutor/public_html/wp-content/themes/twentyfifteen/index.php on line 17
+[09-Nov-2019 15:12:24 UTC] PHP Fatal error:  Call to undefined function the_id() in /home/iktutor/public_html/wp-content/themes/twentyfifteen/content-link.php on line 13
+[11-Nov-2019 05:37:16 UTC] PHP Fatal error:  Call to undefined function get_header() in /home/iktutor/public_html/wp-content/themes/twentyfifteen/archive.php on line 19
+[11-Nov-2019 22:21:17 UTC] PHP Fatal error:  Call to undefined function _e() in /home/iktutor/public_html/wp-content/themes/twentyfifteen/author-bio.php on line 12
+[14-Dec-2019 19:16:26 UTC] PHP Fatal error:  Call to undefined function the_id() in /home/iktutor/public_html/wp-content/themes/twentyfifteen/content.php on line 13
+[27-Dec-2019 22:54:23 UTC] PHP Fatal error:  Call to undefined function get_header() in /home/iktutor/public_html/wp-content/themes/twentyfifteen/index.php on line 17
+[05-Jun-2020 05:15:58 UTC] PHP Fatal error:  Call to undefined function get_header() in /home/iktutor/public_html/wp-content/themes/twentyfifteen/404.php on line 10
+[29-Jun-2020 16:08:33 UTC] PHP Fatal error:  Call to undefined function get_header() in /home/iktutor/public_html/wp-content/themes/twentyfifteen/404.php on line 10

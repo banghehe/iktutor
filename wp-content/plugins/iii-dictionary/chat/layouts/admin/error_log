@@ -1,0 +1,51 @@
+[25-Dec-2018 05:23:15 UTC] PHP Fatal error:  Call to undefined function get_dict_header() in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/admin_login.php on line 20
+[25-Dec-2018 05:23:23 UTC] PHP Fatal error:  Call to undefined function is_mw_registered_teacher() in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/view_user.php on line 10
+[25-Dec-2018 05:23:25 UTC] PHP Fatal error:  Class 'MWDB' not found in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/create_credit_codes.php on line 10
+[25-Dec-2018 05:23:32 UTC] PHP Fatal error:  Call to undefined function ik_check_user_role() in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/admin_manager.php on line 6
+[25-Dec-2018 05:23:35 UTC] PHP Fatal error:  Call to undefined function get_query_var() in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/check_groups.php on line 35
+[25-Dec-2018 05:23:37 UTC] PHP Fatal error:  Call to undefined function get_page_filter_session() in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/create_math_level.php on line 49
+[25-Dec-2018 05:23:42 UTC] PHP Fatal error:  Class 'MWDB' not found in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/check_sales.php on line 2
+[25-Dec-2018 05:23:56 UTC] PHP Fatal error:  Call to undefined function get_query_var() in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/check_users.php on line 61
+[25-Dec-2018 05:23:58 UTC] PHP Fatal error:  Class 'MWDB' not found in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/payment_requests.php on line 21
+[25-Dec-2018 23:56:15 UTC] PHP Fatal error:  Class 'MWDB' not found in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/price_manager.php on line 114
+[26-Dec-2018 00:50:21 UTC] PHP Fatal error:  Call to undefined function get_query_var() in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/verify_credit_codes.php on line 44
+[26-Dec-2018 01:26:25 UTC] PHP Fatal error:  Call to undefined function wp_register_script() in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/admin_homework_creator.php on line 3
+[30-Dec-2018 23:41:03 UTC] PHP Fatal error:  Call to undefined function get_dict_header() in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/admin_login.php on line 20
+[31-Dec-2018 01:16:58 UTC] PHP Fatal error:  Call to undefined function is_mw_registered_teacher() in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/view_user.php on line 10
+[31-Dec-2018 02:46:00 UTC] PHP Fatal error:  Class 'MWDB' not found in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/create_credit_codes.php on line 10
+[31-Dec-2018 03:40:48 UTC] PHP Fatal error:  Call to undefined function get_query_var() in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/check_users.php on line 61
+[31-Dec-2018 04:15:03 UTC] PHP Fatal error:  Call to undefined function ik_check_user_role() in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/admin_manager.php on line 6
+[31-Dec-2018 05:37:15 UTC] PHP Fatal error:  Call to undefined function get_query_var() in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/check_groups.php on line 35
+[31-Dec-2018 05:44:06 UTC] PHP Fatal error:  Class 'MWDB' not found in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/payment_requests.php on line 21
+[31-Dec-2018 07:26:52 UTC] PHP Fatal error:  Call to undefined function get_page_filter_session() in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/create_math_level.php on line 49
+[31-Dec-2018 08:21:39 UTC] PHP Fatal error:  Class 'MWDB' not found in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/price_manager.php on line 114
+[31-Dec-2018 13:50:27 UTC] PHP Fatal error:  Class 'MWDB' not found in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/check_sales.php on line 2
+[01-Jan-2019 22:43:35 UTC] PHP Fatal error:  Call to undefined function get_query_var() in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/verify_credit_codes.php on line 44
+[01-Jan-2019 22:43:52 UTC] PHP Fatal error:  Call to undefined function wp_register_script() in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/admin_homework_creator.php on line 3
+[27-Feb-2019 10:47:32 UTC] PHP Fatal error:  Call to undefined function get_query_var() in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/check_users.php on line 61
+[27-Feb-2019 10:47:37 UTC] PHP Fatal error:  Call to undefined function get_dict_header() in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/admin_login.php on line 20
+[27-Feb-2019 10:47:42 UTC] PHP Fatal error:  Call to undefined function is_mw_registered_teacher() in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/view_user.php on line 10
+[27-Feb-2019 10:47:47 UTC] PHP Fatal error:  Class 'MWDB' not found in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/create_credit_codes.php on line 10
+[27-Feb-2019 10:47:52 UTC] PHP Fatal error:  Call to undefined function ik_check_user_role() in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/admin_manager.php on line 6
+[27-Feb-2019 10:48:00 UTC] PHP Fatal error:  Call to undefined function get_query_var() in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/check_groups.php on line 35
+[27-Feb-2019 10:48:11 UTC] PHP Fatal error:  Class 'MWDB' not found in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/payment_requests.php on line 21
+[27-Feb-2019 10:48:22 UTC] PHP Fatal error:  Call to undefined function get_page_filter_session() in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/create_math_level.php on line 49
+[27-Feb-2019 10:48:33 UTC] PHP Fatal error:  Class 'MWDB' not found in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/price_manager.php on line 114
+[27-Feb-2019 10:48:44 UTC] PHP Fatal error:  Class 'MWDB' not found in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/check_sales.php on line 2
+[27-Feb-2019 10:48:55 UTC] PHP Fatal error:  Call to undefined function get_query_var() in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/verify_credit_codes.php on line 44
+[27-Feb-2019 10:49:08 UTC] PHP Fatal error:  Call to undefined function wp_register_script() in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/admin_homework_creator.php on line 3
+[26-Jun-2019 17:00:37 UTC] PHP Fatal error:  Call to undefined function get_query_var() in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/check_groups.php on line 35
+[28-Jun-2019 06:16:27 UTC] PHP Fatal error:  Call to undefined function get_query_var() in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/check_users.php on line 61
+[28-Jun-2019 11:16:36 UTC] PHP Fatal error:  Call to undefined function get_page_filter_session() in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/create_math_level.php on line 49
+[05-Jul-2019 12:54:21 UTC] PHP Fatal error:  Call to undefined function get_dict_header() in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/admin_login.php on line 20
+[05-Jul-2019 14:15:11 UTC] PHP Fatal error:  Call to undefined function is_mw_registered_teacher() in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/view_user.php on line 10
+[05-Jul-2019 15:27:37 UTC] PHP Fatal error:  Class 'MWDB' not found in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/create_credit_codes.php on line 10
+[08-Jul-2019 06:17:22 UTC] PHP Fatal error:  Call to undefined function get_query_var() in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/check_users.php on line 61
+[09-Jul-2019 01:26:29 UTC] PHP Fatal error:  Call to undefined function ik_check_user_role() in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/admin_manager.php on line 6
+[09-Jul-2019 02:44:23 UTC] PHP Fatal error:  Call to undefined function get_query_var() in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/check_groups.php on line 35
+[09-Jul-2019 03:46:32 UTC] PHP Fatal error:  Class 'MWDB' not found in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/payment_requests.php on line 21
+[09-Jul-2019 07:46:45 UTC] PHP Fatal error:  Call to undefined function get_page_filter_session() in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/create_math_level.php on line 49
+[09-Jul-2019 08:59:37 UTC] PHP Fatal error:  Class 'MWDB' not found in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/price_manager.php on line 114
+[09-Jul-2019 10:01:42 UTC] PHP Fatal error:  Class 'MWDB' not found in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/check_sales.php on line 2
+[09-Jul-2019 11:17:52 UTC] PHP Fatal error:  Call to undefined function get_query_var() in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/verify_credit_codes.php on line 44
+[09-Jul-2019 12:39:46 UTC] PHP Fatal error:  Call to undefined function wp_register_script() in /home/iktutor/public_html/wp-content/plugins/iii-dictionary/chat/layouts/admin/admin_homework_creator.php on line 3

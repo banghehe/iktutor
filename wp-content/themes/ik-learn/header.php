@@ -1,6 +1,14 @@
 <?php 
 $current_user = wp_get_current_user();
 $is_user_logged_in = is_user_logged_in();
+if($is_user_logged_in){
+    $status_login = get_user_meta($current_user->ID, 'status_login', true);
+    if($status_login == '0'){
+        update_user_meta($current_user->ID, 'status_login', '1');
+        wp_logout();
+    };
+
+}
 
 if(isset($_GET['key']) && isset($_GET['login']) && !$is_user_logged_in) {
     $rp_login = esc_html( stripslashes($_GET['login']) );
@@ -627,8 +635,8 @@ else {
                                 } else if ($.trim(data) == '0') {
                                     $('#login-modal').css("display", "none");
                                 } else {
-                                    $('#popup-message').html('<p class="text-used">' + data + '</p><button id="got-it" type="button" class="btn-orange form-control nopadding-r border-btn">OK</button>');
-                                    $('#top-popup-message').css("display", "block");
+                                    $('#popup-message').html('<p class="text-used">' + data + '</p><button id="got-it" type="button" class="btn-orange form-control nopadding-r border-btn" style="height: 40px !important ">OK</button><span class="sign-up sign-pass">Register now?</span><br><span class="forgot-pass sign-pass" >Forgot password?</span>');
+                                $('#top-popup-message').css("display", "block");
                                 }
                             });
                         });
@@ -679,6 +687,25 @@ else {
                             document.location.href = home_url;
                         });
                     });
+                $('body').on('click', '.sign-up', function () {
+                   if($("#login-modal").hasClass("in")){
+                                $("#login-modal").modal("hide");
+                            }
+                            if($("#signup-modal").hasClass("in")==false){
+                            $("#signup-modal").modal('show');}
+                            else {$("#signup-modal").modal('hide');}
+                    $("#top-popup-message").css("display","none");
+                    
+                    
+            });
                 })(jQuery);
+                
+            $('body').on('click','.forgot-pass', function () {
+                        $("#login-modal-body").addClass("hidden");
+                            $("#resetpass-modal-body").addClass("hidden");
+                            $("#getpass-modal-body").removeClass("hidden");
+                    
+                        $("#top-popup-message").css("display","none");
+                    });
             </script>
         </header>

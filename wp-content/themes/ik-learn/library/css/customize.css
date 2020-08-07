@@ -411,7 +411,7 @@ body { padding-right: 0 !important }
     
 }
 .footer{
-        /*min-height: -webkit-fill-available;
+       /* min-height: -webkit-fill-available;
         height: 100%;*/
 }
 .sethidden{
@@ -1410,5 +1410,16 @@ input.input-box-style2, textarea.textarea-style2 {
     .intro-item li span {
         width: 82%;
     }
+}
+.sign-pass {
+     color: #ffc168;
+    font-size: 14px;
+    font-family: Myriad_light;
+    cursor: pointer;
+text-decoration: underline;
+margin-left: 280px;
+margin-top: -55px;
+position: absolute;
+padding-bottom: 5px;
 }
 /*end responsive*/

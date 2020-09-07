@@ -20,10 +20,13 @@ if (strpos($link_current, '/en/') !== false) {
 }
 $current_user = wp_get_current_user();
 $is_user_logged_in = is_user_logged_in();
-if($is_user_logged_in)
+if($is_user_logged_in){
     $link = '?r=ajax/logged/'.$current_user->ID.'/'.session_id();
-else
-    $link = '';
+    $linkss = '?r=ajax/logged/'.$current_user->ID.'/'.session_id();
+}else{
+    $link = '#login';
+    $linkss = '';
+}
 ?>
 <?php get_header(); ?>	
 <?php
@@ -63,7 +66,7 @@ if ($segment[2] == 'mathteacher') {
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-sm-6 col-xs-12 body-tab" onclick="location.href = 'https://iktutor.com/iklearn/en/<?php echo $link ?>'">
+                    <div class="col-md-6 col-sm-6 col-xs-12 body-tab" onclick="location.reload(); location.href = 'https://iktutor.com/iklearn/en/<?php echo $link ?>'; ">
                         <div class="class-to-ikstudy">
 
                             <div class="wrapp-img">

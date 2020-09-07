@@ -9,6 +9,11 @@ if($is_user_logged_in){
     };
 
 }
+if($is_user_logged_in){
+   add_user_meta($current_user->ID,'status_login_2','1');
+   update_user_meta($current_user->ID, 'status_login_2', '1');
+
+};
 
 if(isset($_GET['key']) && isset($_GET['login']) && !$is_user_logged_in) {
     $rp_login = esc_html( stripslashes($_GET['login']) );
@@ -42,6 +47,11 @@ else {
     <meta name="msapplication-TileColor" content="#f01d4f">
     <meta name="msapplication-TileImage" content="<?php echo get_template_directory_uri(); ?>/library/images/win8-tile-icon.png">
     <meta name="theme-color" content="#121212">
+    <meta http-equiv="cache-control" content="max-age=0">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT">
+<meta http-equiv="pragma" content="no-cache">
     <script src="<?php echo get_template_directory_uri(); ?>/library/js/jquery.min.js"></script>
     <script src="<?php echo get_template_directory_uri(); ?>/library/js/detect-zoom.js"></script>
     <!-- <script src="<?php echo get_template_directory_uri(); ?>/library/js/bootstrap.js"></script> 
@@ -651,6 +661,16 @@ else {
                             });
                         });
 
+                        $('.logout-link').click(function (e) {
+                            localStorage.clear();
+                            var status_login_2 = '0';
+                            $.post(home_url + "/?r=ajax/status_login_2", {
+                                status_login_2: status_login_2,
+                                type: "update"
+                            });
+
+                        });
+
                         $('#newpass-btn').click(function () {
                             var pass1 = $('#pass1').val();
                             var pass2 = $('#pass2').val();
@@ -686,6 +706,14 @@ else {
                         $("#got-newpass").live("click", function () {
                             document.location.href = home_url;
                         });
+                        function getStatusLogin(){
+                        $.post(home_url + "/?r=ajax/get_status_login",{}, function (data) {
+                                data = JSON.parse(data);
+                                if ($.trim(data) == '0') {
+                                   location.reload();};
+                            });
+                       
+                    }setInterval(getStatusLogin, 1000);
                     });
                 $('body').on('click', '.sign-up', function () {
                    if($("#login-modal").hasClass("in")){
@@ -695,9 +723,10 @@ else {
                             $("#signup-modal").modal('show');}
                             else {$("#signup-modal").modal('hide');}
                     $("#top-popup-message").css("display","none");
-                    
-                    
-            });
+
+                });
+                
+                
                 })(jQuery);
                 
             $('body').on('click','.forgot-pass', function () {
@@ -707,5 +736,6 @@ else {
                     
                         $("#top-popup-message").css("display","none");
                     });
+
             </script>
         </header>

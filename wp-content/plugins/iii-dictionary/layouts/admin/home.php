@@ -64,7 +64,7 @@ if ($segment[2] == 'mathteacher') {
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-sm-6 col-xs-6 body-tab" onclick="location.href = 'https://iktutor.com/iklearn/en/<?php echo $link ?>'">
+                    <div class="col-md-6 col-sm-6 col-xs-6 body-tab" onclick="location.href = 'http://iklearn.local/en/<?php echo $link ?>'; location.reload();">
                         <div class="class-to-ikstudy">
 
                             <div class="wrapp-img">

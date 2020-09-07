@@ -379,32 +379,42 @@ function changeHeight(zoom) {
         var wh = e[ a + 'Width' ];
         var ht = e[ a + 'Height' ];
 
-        if((wh/ht)<0.75){
+        if((wh/ht)<0.75 && (wh/ht)==0.75){
             $(".footer").css({ height: "100%" });
             $("body").css({ height: "100%" });
             $("html").css({ height: "100%" });
             $("#container").css({ height: "100%", overflow: "hidden" });
+           
             
         }else if((wh/ht)>0.75){
             $(".footer").css({ height: "110px" });
             $("body").css({ height: "unset" });
             $("html").css({ height: "unset" });
             $("#container").css({ height: "unset", overflow: "unset" });
-             
+            
+        
         }
         }else if (zoom > 0.75 && zoom < 0.98) {
-            $(".footer").css({ height: "110px" });
+            if((wh/ht)<0.75 && (wh/ht)==0.75){
+            $(".footer").css({ height: "100%" });
+            $("body").css({ height: "100%" });
+            $("html").css({ height: "100%" });
+            $("#container").css({ height: "100%", overflow: "hidden" });
+            
+
+            }else{$(".footer").css({ height: "110px" });
             $("body").css({ height: "unset" });
             $("html").css({ height: "unset" });
             $("#container").css({ height: "unset", overflow: "unset" });
-           
+         
+       }
         
         } else{
             $(".footer").css({ height: "100%" });
             $("body").css({ height: "100%" });
             $("html").css({ height: "100%" });
             $("#container").css({ height: "100%", overflow: "hidden" });
-           
+           alert(zoom);
         }
 }
 

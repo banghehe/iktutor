@@ -45,7 +45,7 @@ if ($segment[2] == 'mathteacher') {
         <div class="row">
             <div class="container">
                 <div class="wrapper-content">
-                    <div class="col-md-6 col-sm-6 col-xs-12 body-tab boxshadow-tab" onclick="location.href = 'https://iktutor.com/ikteach/en/<?php echo $link ?>'">
+                    <div class="col-md-6 col-sm-6 col-xs-12 body-tab boxshadow-tab" onclick="location.href = 'https://iktutor.com/ikteach/en/<?php echo $linkss ?>'">
                         <div class="class-to-ikteacher">
                             <div class="wrapp-img">
                                 <img src="<?php echo get_template_directory_uri(); ?>/library/images/MainPic_Teacher.jpg" name="ikteacher" class="image-tab">

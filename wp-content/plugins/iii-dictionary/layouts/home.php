@@ -49,7 +49,7 @@ if ($segment[2] == 'mathteacher') {
                         <div class="class-to-ikteacher">
                             <div class="wrapp-img">
                                 <img src="<?php echo get_template_directory_uri(); ?>/library/images/MainPic_Teacher.jpg" name="ikteacher" class="image-tab">
-                                <button onclick="location.reload(); location.href = 'https://iktutor.com/ikteach/en/<?php echo $linkss ?>';" class="btn-blue btn-group border-ras">TEACHERS & TUTORS</button>
+                                <button id="ikteach" class="btn-blue btn-group border-ras">TEACHERS & TUTORS</button>
                             </div>
                             <div id="tutor-page" class="intro-page">
                                 
@@ -416,7 +416,7 @@ if ($segment[2] == 'mathteacher') {
 
                             <div class="wrapp-img">
                                 <img src="<?php echo get_template_directory_uri(); ?>/library/images/MainPic_Student.jpg" name="ikteacher" class="image-tab">
-                               <button class="btn-orange btn-group border-ras " onclick="location.reload(); location.href = 'https://iktutor.com/iklearn/en/<?php echo $link ?>'; ">STUDENTS</button>
+                               <button class="btn-orange btn-group border-ras " id="iklearn" >STUDENTS</button>
                             </div>
                             <div id="student-page" class="intro-page">
                                 <div class="title-intro">Register Now and Start Your Online Learning!</div>
@@ -1146,6 +1146,22 @@ if ($segment[2] == 'mathteacher') {
                         $('.list-step-st').removeClass('hidden');
                     }
                     step.addClass('hidden');
+            });
+            $('#ikteach').click(function(){
+                var link = '<?php echo $linkss; ?>';
+                if (link !='') {
+                    window.location='https://iktutor.com/ikteach/en'+link;
+            }else{
+                window.location='https://iktutor.com/ikteach/en/';      
+            }
+            });
+            $('#iklearn').click(function(){
+                var link = '<?php echo $link; ?>';
+                if (link !='') {
+                    window.location='https://iktutor.com/iklearn/en'+link;
+            }else{
+                window.location='https://iktutor.com/iklearn/en/';      
+            }
             });
 
 
